@@ -327,6 +327,17 @@
     .project-item:hover .project-tag { border-color:var(--indigo);color:var(--indigo); }
     .project-arrow { font-size:1.4rem;color:var(--muted);flex-shrink:0;transition:transform .2s,color .2s; }
     .project-item:hover .project-arrow { transform:translate(4px,-4px);color:var(--indigo); }
+    .proj-link {
+      display:inline-flex;align-items:center;padding:.5rem 1rem;border-radius:9999px;
+      font-size:.8rem;font-weight:600;text-decoration:none;white-space:nowrap;
+      background:var(--indigo);color:#fff;
+      transition:background .2s,transform .2s;
+    }
+    .proj-link:hover { background:#4f52e0;transform:translateY(-2px); }
+    .proj-link-ghost {
+      background:transparent;border:1.5px solid var(--border);color:var(--text);
+    }
+    .proj-link-ghost:hover { border-color:var(--indigo);color:var(--indigo);background:transparent; }
 
     /* ── Skills ── */
     #skills { padding:5rem 2.5rem; }
@@ -474,7 +485,7 @@
       <div class="hfloat-1">
         <div class="hcard hcard-1">
           <div class="hcard-top">
-            <span class="hcard-icon">🎓</span>
+            <span class="hcard-icon"></span>
             <span class="hcard-eyebrow">Currently</span>
           </div>
           <p class="hcard-title">MS Computer Science</p>
@@ -490,7 +501,7 @@
       <div class="hfloat-2">
         <div class="hcard hcard-2">
           <div class="hcard-top">
-            <span class="hcard-icon">💼</span>
+            <span class="hcard-icon"></span>
             <span class="hcard-eyebrow">Previously · 3 years</span>
           </div>
           <p class="hcard-title">SDE2 @ Mastercard</p>
@@ -507,7 +518,7 @@
       <div class="hfloat-3">
         <div class="hcard hcard-3">
           <div class="hcard-top">
-            <span class="hcard-icon">🤖</span>
+            <span class="hcard-icon"></span>
             <span class="hcard-eyebrow">Latest Project</span>
           </div>
           <p class="hcard-title">AI Research Assistant</p>
@@ -644,8 +655,7 @@
     <h2 class="section-heading reveal">Things I've Built</h2>
     <div class="projects-list">
 
-      <a href="#" class="project-item reveal">
-        <div class="project-emoji">🤖</div>
+      <div class="project-item reveal">
         <div class="project-info">
           <div class="project-date">Feb 2026 – Present</div>
           <div class="project-name">Research Paper Intelligence Assistant</div>
@@ -655,11 +665,13 @@
             <span class="project-tag">LLaMA 3.1</span><span class="project-tag">ChromaDB</span><span class="project-tag">Streamlit</span>
           </div>
         </div>
-        <div class="project-arrow">↗</div>
-      </a>
+        <div style="display:flex;gap:.6rem;flex-shrink:0;">
+          <a href="https://research-paper-intelligent-assistant.streamlit.app/" target="_blank" class="proj-link">Live ↗</a>
+          <a href="https://github.com/shrutinaredi/research-paper-intelligent-assistant" target="_blank" class="proj-link proj-link-ghost">GitHub</a>
+        </div>
+      </div>
 
-      <a href="#" class="project-item reveal d1">
-        <div class="project-emoji">🧠</div>
+      <div class="project-item reveal d1">
         <div class="project-info">
           <div class="project-date">Jan 2026 – Present</div>
           <div class="project-name">Agentic LLM System with Retrieval &amp; Self-Correction</div>
@@ -669,11 +681,12 @@
             <span class="project-tag">LangGraph</span><span class="project-tag">LangChain</span><span class="project-tag">RAG</span>
           </div>
         </div>
-        <div class="project-arrow">↗</div>
-      </a>
+        <div style="display:flex;gap:.6rem;flex-shrink:0;">
+          <span class="proj-link proj-link-ghost" style="cursor:default;opacity:.5;">No public link</span>
+        </div>
+      </div>
 
-      <a href="#" class="project-item reveal d2">
-        <div class="project-emoji">⚡</div>
+      <div class="project-item reveal d2">
         <div class="project-info">
           <div class="project-date">Nov 2025 – Dec 2025</div>
           <div class="project-name">GPU-Accelerated Joins for Sirius SQL Engine</div>
@@ -683,8 +696,10 @@
             <span class="project-tag">libcudf</span><span class="project-tag">NVIDIA</span>
           </div>
         </div>
-        <div class="project-arrow">↗</div>
-      </a>
+        <div style="display:flex;gap:.6rem;flex-shrink:0;">
+          <span class="proj-link proj-link-ghost" style="cursor:default;opacity:.5;">No public link</span>
+        </div>
+      </div>
 
     </div>
   </section>
