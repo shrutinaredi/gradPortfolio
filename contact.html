@@ -465,7 +465,7 @@
       return ok;
     }
 
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', async e => {
       e.preventDefault();
       if (!validate()) return;
 
@@ -474,16 +474,47 @@
       document.getElementById('btn-arrow').textContent = '⏳';
       btn.classList.add('loading');
 
-      // Simulate send (replace with your backend/Formspree endpoint)
-      setTimeout(() => {
+      const data = {
+        name:    document.getElementById('name').value.trim(),
+        email:   document.getElementById('email').value.trim(),
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value.trim(),
+      };
+
+      try {
+        const res = await fetch('https://formspree.io/f/xjgzpjgv', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
         btn.classList.remove('loading');
         document.getElementById('btn-text').textContent = 'Send Message';
         document.getElementById('btn-arrow').textContent = '→';
+
+        if (res.ok) {
+          document.getElementById('success-banner').textContent = '✓  Message sent! I\'ll get back to you soon.';
+          document.getElementById('success-banner').classList.add('show');
+          form.reset();
+          countEl.textContent = '0';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          document.getElementById('success-banner').style.background = 'rgba(248,113,113,.1)';
+          document.getElementById('success-banner').style.borderColor = '#f87171';
+          document.getElementById('success-banner').style.color = '#f87171';
+          document.getElementById('success-banner').textContent = '✕  Something went wrong. Please email me directly.';
+          document.getElementById('success-banner').classList.add('show');
+        }
+      } catch {
+        btn.classList.remove('loading');
+        document.getElementById('btn-text').textContent = 'Send Message';
+        document.getElementById('btn-arrow').textContent = '→';
+        document.getElementById('success-banner').style.background = 'rgba(248,113,113,.1)';
+        document.getElementById('success-banner').style.borderColor = '#f87171';
+        document.getElementById('success-banner').style.color = '#f87171';
+        document.getElementById('success-banner').textContent = '✕  Network error. Please email me directly.';
         document.getElementById('success-banner').classList.add('show');
-        form.reset();
-        countEl.textContent = '0';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 1400);
+      }
     });
 
     // Clear errors on input
